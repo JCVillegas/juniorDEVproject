@@ -25,9 +25,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'updated') ?>
 
-    <?php // echo $form->field($model, 'exported') ?>
+    <?= $form->field($model, 'exported') ?>
 
-    <?php // echo $form->field($model, 'url') ?>
+    <?= $form->field($model, 'url') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
