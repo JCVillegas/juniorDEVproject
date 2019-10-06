@@ -5,8 +5,44 @@ use app\models\Documents;
 
 class DocumentsHelper
 {
+
+    /**
+     * Generates a csv file and downloads it for user.
+     *
+     * @param Documents $document
+     * @param $id
+     */
+    public static function generateCSVFile(Documents $document, $id){
+
+        $filename = $document->name;
+
+        $document->exported = DocumentsHelper::createTimeStamp();
+
+        $data = [];
+        $data[0]   = array('CREATION DATE', 'LAST UPDATE');
+        $data[1]   = array($document->created, is_null($document->updated)?'NOT UPDATED YET':$document->updated);
+        $data[2]   = array('', '');
+        $data[3]   = array('KEY', 'VALUE');
+
+        $keyValues = json_decode($document->key_values, true);
+        foreach ($keyValues as $key=>$value)
+        {
+            array_push($data, array($key, $value));
+        }
+        $fp = fopen('php://output', 'w');
+        foreach ( $data as $line ) {
+            fputcsv($fp, $line, ',');
+        }
+        fclose($fp);
+
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename='.$filename.'.csv');
+        $document->save();
+    }
+
     /**
      * Saves data for document
+     *
      * @param $request
      * @return int
      */
@@ -31,7 +67,8 @@ class DocumentsHelper
     }
 
     /**
-     * Return a timestamp
+     * Returns a timestamp
+     *
      * @return false|string
      */
     private static function createTimeStamp(){
