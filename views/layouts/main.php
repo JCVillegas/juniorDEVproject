@@ -39,7 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Create', 'url' => ['/documents/create']],
-            ['label' => 'Read', 'url' => ['/documents/index']],
+            ['label' => 'Read & Search', 'url' => ['/documents/index']],
             ],
     ]);
     NavBar::end();
