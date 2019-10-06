@@ -7,12 +7,11 @@ class DocumentsHelper
 {
 
     /**
-     * Generates a csv file and downloads it for user.
+     * Generates and downloads a CSV file.
      *
      * @param Documents $document
-     * @param $id
      */
-    public static function generateCSVFile(Documents $document, $id){
+    public static function generateCSVFile(Documents $document){
 
         $filename = $document->name;
 
@@ -41,9 +40,9 @@ class DocumentsHelper
     }
 
     /**
-     * Saves data for document
+     * Saves document data
      *
-     * @param $request
+     * @param array $request
      * @return int
      */
     public static function processSaveDocument($request) {
@@ -61,6 +60,20 @@ class DocumentsHelper
         $document->name       = $request['Documents']['name'];
         $document->key_values = $jsonKeyValue;
         $document->created    = DocumentsHelper::createTimeStamp();
+        $document->save();
+
+        return $document->id;
+    }
+
+    /**
+     * Updates document
+     *
+     * @param Documents $document
+     * @return int
+     */
+    public static function processUpdateDocument(Documents $document) {
+
+        $document->updated  = DocumentsHelper::createTimeStamp();
         $document->save();
 
         return $document->id;
