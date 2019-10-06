@@ -47,12 +47,23 @@ class DocumentsController extends Controller
 
     /**
      * Displays a single Documents model.
+     * Generates csv doc
+     * Uploads file to Dropbox
+     *
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
+
+        //Generate CSV document.
+        if (isset($_REQUEST['genDoc']) && $_REQUEST['genDoc'] == true )
+        {
+            DocumentsHelper::generateCSVFile($id);
+        }
+
+        // Render view
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
