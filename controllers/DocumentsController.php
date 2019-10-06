@@ -8,6 +8,7 @@ use app\models\Search;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\components\DocumentsHelper;
 
 /**
  * DocumentsController implements the CRUD actions for Documents model.
@@ -66,8 +67,9 @@ class DocumentsController extends Controller
     {
         $model = new Documents();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $documentId = DocumentsHelper::processSaveDocument(Yii::$app->request->post());
+            return $this->redirect(['view', 'id' => $documentId]);
         }
 
         return $this->render('create', [
