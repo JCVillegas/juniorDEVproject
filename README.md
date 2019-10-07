@@ -14,34 +14,34 @@ make use of the CRUD operations:<br />
 
 | Description | URL  |
 | --- | --- |
-|*__MAIN MENU__ | http://localhost:8080/ |
+|*__MAIN MENU__* | http://localhost:8080/ |
 |  | |
-|*__CREATE__ | http://localhost:8080/documents/create|
+|*__CREATE__* | http://localhost:8080/documents/create|
 | |  |
-|*__READ__ | http://localhost:8080/documents/view?id=[documentId] |
+|*__READ__* | http://localhost:8080/documents/view?id=[documentId] |
 |  |  |
-|*__UPDATE__ | http://localhost:8080/documents/update?id=[documentId] |
+|*__UPDATE__*| http://localhost:8080/documents/update?id=[documentId] |
 |  |  |
-|*__DELETE__ | http://localhost:8080/documents/delete?id=[documentId] |
+|*__DELETE__* | http://localhost:8080/documents/delete?id=[documentId] |
 |  |  |
-|*__GENERATE__| http://localhost:8080/documents/generate?id=[documentId] |
+|*__GENERATE__*| http://localhost:8080/documents/generate?id=[documentId] |
 |  |  |
-|*__EXPORT__ | http://localhost:8080/documents/upload?id=[documentId] |
+|*__EXPORT__*| http://localhost:8080/documents/upload?id=[documentId] |
 
 
 
 ## Notes
 The project was developed under Yii2 Framework running the PHP built-in server integration using PHP 7.2.23 and MySQL 8.0.17 <br />
 The functionalities for this project are:<br />
-1 The web application allows to store a set of key/value pairs and a document name in the DB.<br />
-2 It also stores metadata (date of document created, exported, updated)<br />
-3 Lists all files with metadata fields.<br />
-4 Updates name and key/ value pairs for existing document.<br />
-5 When updating the document it updates last modification date.<br />
-6 Allows to delete document.<br />
-7 Allows to export stored data as a CSV comma separated file.<br />
+* The web application allows to store a set of key/value pairs and a document name in the DB.<br />
+* It also stores metadata (date of document created, exported, updated)<br />
+* Lists all files with metadata fields.<br />
+* Updates name and key/ value pairs for existing document.<br />
+* When updating the document it updates last modification date.<br />
+* Allows to delete document.<br />
+* Allows to export stored data as a CSV comma separated file.<br />
 
-##BONUS<br />
+## BONUS<br />
 * Exports stored data (CSV file) to Dropbox <br />
 * Gets publi URL from Dropbox <br />
 
