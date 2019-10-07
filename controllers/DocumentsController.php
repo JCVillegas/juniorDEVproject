@@ -104,14 +104,28 @@ class DocumentsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $documentId = DocumentsHelper::processUpdateDocument($model);
-            return $this->redirect(['view', 'id' => $documentId]);
+           DocumentsHelper::processUpdateDocument($model);
+
+           return $this->redirect(['view', 'id' => $id]);
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
     }
+
+    /**
+     * Uploads csv file to Dropbox and update documents url.
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionUpload($id){
+
+        $model = $this->findModel($id);
+        DocumentsHelper::processUploadDocument($model);
+
+        return $this->redirect(['view', 'id' => $id]);}
 
     /**
      * Deletes an existing Documents model.
