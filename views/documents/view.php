@@ -39,8 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
-    <?= Html::a('Generate CSV Document', ['generate', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-    <?= Html::a('Upload to Dropbox', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a('Generate CSV Document', ['generate', 'id' => $model->id], ['class' => 'btn btn-lg btn-success']) ?>
+    <?= Html::a('Upload to Dropbox', ['upload', 'id' => $model->id], ['class' => 'btn btn-lg btn-success']) ?>
 
 
 </div>
