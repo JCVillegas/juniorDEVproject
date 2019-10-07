@@ -4,8 +4,10 @@
 Framework application assignment that Creates, Reads, Updates, Deletes, Downloads and Exports CSV created Documents.
 
 ## Requirements
-You need to manually install the database and table used for the project.
-You can use the included schema.sql file.
+You need to manually create the database and table used for the project.
+Please use the included file schema.sql file that only contains the table structure.
+Database settings need to be updated in the file: config/db.php<br>
+DB should be named: "project" and table "documents".
 
 
 ## How to use
