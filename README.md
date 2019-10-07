@@ -15,17 +15,17 @@ make use of the CRUD operations:<br />
 | Description | URL  |
 | --- | --- |
 |*__MAIN MENU__ | http://localhost:8080/ |
-| --- | --- |
+|  | |
 |*__CREATE__ | http://localhost:8080/documents/create|
-| --- | --- |
+| |  |
 |*__READ__ | http://localhost:8080/documents/view?id=[documentId] |
-| --- | --- |
+|  |  |
 |*__UPDATE__ | http://localhost:8080/documents/update?id=[documentId] |
-| --- | --- |
+|  |  |
 |*__DELETE__ | http://localhost:8080/documents/delete?id=[documentId] |
-| --- | --- |
+|  |  |
 |*__GENERATE__| http://localhost:8080/documents/generate?id=[documentId] |
-| --- | --- |
+|  |  |
 |*__EXPORT__ | http://localhost:8080/documents/upload?id=[documentId] |
 
 
