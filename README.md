@@ -2,25 +2,32 @@
 
 ## Introduction
 Framework application assignment that Creates, Reads, Updates, Deletes, Downloads and Exports CSV created Documents.
-Created under Yii2 Framework.
 
-##Requirements
+## Requirements
 You need to manually install the database and table used for the project.
 You can use the included schema.sql file.
 
 
-##How to use
+## How to use
 Clone or download this repository, with a web server running open a web browser and
 make use of the CRUD operations:<br />
 
-*__MAIN MENU__   - http://localhost:8080/<br />
+| Description | URL  |
+| --- | --- |
+|*__MAIN MENU__ | http://localhost:8080/ |
+| --- | --- |
+|*__CREATE__ | http://localhost:8080/documents/create|
+| --- | --- |
+|*__READ__ | http://localhost:8080/documents/view?id=[documentId] |
+| --- | --- |
+|*__UPDATE__ | http://localhost:8080/documents/update?id=[documentId] |
+| --- | --- |
+|*__DELETE__ | http://localhost:8080/documents/delete?id=[documentId] |
+| --- | --- |
+|*__GENERATE__| http://localhost:8080/documents/generate?id=[documentId] |
+| --- | --- |
+|*__EXPORT__ | http://localhost:8080/documents/upload?id=[documentId] |
 
-*__CREATE__      - http://localhost:8080/documents/create<br />
-*__READ__        - http://localhost:8080/documents/view?id=[documentId]<br />
-*__UPDATE__      - http://localhost:8080/documents/update?id=[documentId]<br />
-*__DELETE__      - http://localhost:8080/documents/delete?id=[documentId]<br />
-*__GENERATE__    - http://localhost:8080/documents/generate?id=[documentId]<br />
-*__EXPORT__      - http://localhost:8080/documents/upload?id=[documentId]<br />
 
 
 ## Notes
