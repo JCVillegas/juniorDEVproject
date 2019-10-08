@@ -60,7 +60,7 @@ class DocController extends ActiveController
             }else {
                 return [
                     'status' => false ,
-                    'message'=> 'Document doesnt exist.'
+                    'message'=> 'Document with provided id doesnt exist.'
                 ];
             }
 
@@ -81,8 +81,7 @@ class DocController extends ActiveController
      */
     public function actionDeletes()
     {
-
-        $request = Yii::$app->request->post();
+        $request = Yii::$app->request->get();
 
         // Check if id was given specified document.
         if (isset($request) && isset($request['id']) && is_numeric($request['id'])) {
@@ -93,7 +92,7 @@ class DocController extends ActiveController
             {
                 return [
                     'status' => false ,
-                    'message'=> 'Document doesnt exist.'
+                    'message'=> 'Document with provided id doesnt exist.'
                 ];
             }
 
@@ -117,7 +116,7 @@ class DocController extends ActiveController
 
             return [
                 'status' => false ,
-                'message'=> 'A valid is is needed.'
+                'message'=> 'A valid id is is needed.'
             ];
         }
     }
