@@ -5,6 +5,7 @@ use app\components\DocumentsHelper;
 use app\models\Documents;
 use app\models\Search;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
 
 class DocController extends ActiveController
@@ -13,7 +14,7 @@ class DocController extends ActiveController
     public $modelClass = 'app\models\Documents';
 
     /**
-     * API
+     * POST - Creates a document
      * @return array|mixed
      */
     public function actionCreates()
@@ -42,9 +43,17 @@ class DocController extends ActiveController
 
         DocumentsHelper::processSaveDocument($request);
 
-        return array('status' => true, 'message'=> 'Document successfully created.');
+        return [
+            'status' => true,
+            'message'=> 'Document successfully created.'
+        ];
     }
 
+    /**
+     * GET - Gets all documents or by id.
+     *
+     * @return Documents|array|ActiveDataProvider|null
+     */
     public function actionReads(){
 
         $request = Yii::$app->request->post();
@@ -57,22 +66,66 @@ class DocController extends ActiveController
             if (!empty($model))
             {
                 return($model);
-            }
-            else{
-
+            }else {
                 return [
                     'status' => false ,
                     'message'=> 'Document not found.'
                 ];
             }
 
-
         }
         // Retrieve all documents.
         $searchModel = new Search();
-        $dataProvider = $searchModel->search();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return( $dataProvider);
+        return($dataProvider);
     }
+
+    public function actionDeletes()
+    {
+
+        $request = Yii::$app->request->post();
+
+        // Check if id was given specified document.
+        if (isset($request) && isset($request['id']) && is_numeric($request['id'])) {
+            $id = $request['id'];
+            $model =   Documents::findOne($id);
+
+            if (empty($model))
+            {
+                return [
+                    'status' => false ,
+                    'message'=> 'Document doesnt exist.'
+                ];
+            }
+
+            $model->delete();
+
+            if (!empty($model))
+            {
+                return [
+                'status' => true ,
+                'message'=> 'Document deleted successfully.'
+            ];
+
+            }else {
+                return [
+                    'status' => false ,
+                    'message'=> 'Document not found.'
+                ];
+            }
+
+        }else{
+
+            return [
+                'status' => false ,
+                'message'=> 'A valid is is needed.'
+            ];
+        }
+    }
+
+
+
+
 
 }
