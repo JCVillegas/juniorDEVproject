@@ -200,7 +200,7 @@ class DocumentsHelper
      *
      * @return false|string
      */
-    private static function createTimeStamp(){
+    public static function createTimeStamp(){
 
         return date("Y-m-d H:i:s");
     }
