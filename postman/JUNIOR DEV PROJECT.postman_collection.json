@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "f89a7bc3-2fb8-456c-a797-00bca9910787",
+		"name": "JUNIOR DEV PROJECT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET (Reads document with ID)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/doc/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doc",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET (Reads all documents)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST (Creates a new document)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"documentName\",\n    \"key_values\": \"a:1,b:2,c:3,d:4,e:5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE (Deletes a document)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/doc/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doc",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT (Updates document with ID)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"FileName\",\n    \"key_values\": \"a:1,b:2,c:3,d:4,e:5\",\n    \"id\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/doc/updates",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doc",
+						"updates"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
