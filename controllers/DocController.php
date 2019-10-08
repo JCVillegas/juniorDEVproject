@@ -2,6 +2,8 @@
 namespace app\controllers;
 
 use app\components\DocumentsHelper;
+use app\models\Documents;
+use app\models\Search;
 use Yii;
 use yii\rest\ActiveController;
 
@@ -42,4 +44,35 @@ class DocController extends ActiveController
 
         return array('status' => true, 'message'=> 'Document successfully created.');
     }
+
+    public function actionReads(){
+
+        $request = Yii::$app->request->post();
+
+        // Retrieve specified document.
+        if (isset($request) && isset($request['id']) && is_numeric($request['id']) ){
+            $id    = $request['id'];
+            $model = Documents::findOne($id);
+
+            if (!empty($model))
+            {
+                return($model);
+            }
+            else{
+
+                return [
+                    'status' => false ,
+                    'message'=> 'Document not found.'
+                ];
+            }
+
+
+        }
+        // Retrieve all documents.
+        $searchModel = new Search();
+        $dataProvider = $searchModel->search();
+
+        return( $dataProvider);
+    }
+
 }
