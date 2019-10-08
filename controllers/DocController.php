@@ -6,6 +6,7 @@ use app\models\Documents;
 use app\models\Search;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\db\StaleObjectException;
 use yii\rest\ActiveController;
 
 class DocController extends ActiveController
@@ -22,24 +23,15 @@ class DocController extends ActiveController
     {
         $request = Yii::$app->request->post();
 
-        // Process key values
-        $tempKeyValues = $request['key_values'];
-        $tempKeyValuesArray  = explode(',',  $tempKeyValues);
-        foreach($tempKeyValuesArray as $k=>$v){
-            $tempKeyValuesArray[$k] = explode(':', $v);
+        $check = $this->validateFields($request['name'], $request['name']);
+
+        if ($check !== true){
+            return $check;
         }
 
-        $tempKeyValuesArraySingle = call_user_func_array('array_merge', $tempKeyValuesArray);
-
-        $request['key'] = array_filter($tempKeyValuesArraySingle, function($k){
-            return ($k % 2 == 0);
-        }, ARRAY_FILTER_USE_KEY);
-
-        $request['value'] = array_filter($tempKeyValuesArraySingle, function($k){
-            return ($k % 2 == 1);
-        }, ARRAY_FILTER_USE_KEY);
-
         $request['Documents']['name'] = $request['name'];
+
+        list($request['key'], $request['value']) = $this->processKeyValues($request['key_values']);
 
         DocumentsHelper::processSaveDocument($request);
 
@@ -81,6 +73,13 @@ class DocController extends ActiveController
         return($dataProvider);
     }
 
+    /**
+     * DELETE - Deletes document by id
+     *
+     * @return array
+     * @throws \Throwable
+     * @throws StaleObjectException
+     */
     public function actionDeletes()
     {
 
@@ -124,8 +123,94 @@ class DocController extends ActiveController
         }
     }
 
+    /**
+     *  POST - Update documents by given id.
+     *
+     * @return Documents|array|null
+     */
+    public function actionUpdates(){
+
+        $request = Yii::$app->request->post();
+
+        $check = $this->validateFields( $request['name'], $request['key_values'], $request['id']);
+
+        if ($check !== true){
+            return $check;
+        }
+
+        list($request['key'], $request['value']) = $this->processKeyValues($request['key_values']);
+        $jsonKeyValue = json_encode(array_combine($request['key'], $request['value']) );
+
+        $document =   Documents::findOne($request['id']);
+
+        if (empty($document))
+        {
+            return [
+                'status' => false ,
+                'message'=> 'Document with provided id doesnt exist.'
+            ];
+        }
+
+        $document->name       = $request['name'];
+        $document->key_values = $jsonKeyValue;
+        $document->updated    = DocumentsHelper::createTimeStamp();
+        $document->save();
+
+        return [
+            'status' => true,
+            'message'=> 'Document successfully updated.'
+        ];
+
+    }
 
 
 
+private function processKeyValues($tempKeyValues){
 
+    $tempKeyValuesArray  = explode(',',  $tempKeyValues);
+    foreach($tempKeyValuesArray as $k=>$v){
+        $tempKeyValuesArray[$k] = explode(':', $v);
+    }
+
+    $tempKeyValuesArraySingle = call_user_func_array('array_merge', $tempKeyValuesArray);
+
+    $key = array_filter($tempKeyValuesArraySingle, function($k){
+        return ($k % 2 == 0);
+    }, ARRAY_FILTER_USE_KEY);
+
+    $value = array_filter($tempKeyValuesArraySingle, function($k){
+        return ($k % 2 == 1);
+    }, ARRAY_FILTER_USE_KEY);
+
+    return array($key, $value);
+    }
+
+    private function validateFields ($name, $keyValues, $id = 1)
+    {
+        // Check for id.
+        if (empty($id) || !is_numeric($id)) {
+            return [
+                'status' => false,
+                'message'=> 'A valid ID is needed.'
+            ];
+        }
+
+        // Check for name.
+        if (empty($name)) {
+            return [
+                'status' => false,
+                'message'=> 'A name is needed.'
+            ];
+        }
+
+        // Check for keyValues.
+        if (empty($keyValues)) {
+            return [
+                'status' => false,
+                'message'=> 'Key values are needed.'
+            ];
+        }
+
+        return true;
+    }
 }
