@@ -53,9 +53,10 @@ $config = [
             'showScriptName' => false,
             'rules' =>
                 [
-                    'class'      => 'yii\rest\UrlRule',
-                    'controller' => 'doc',
-                    'GET doc/<id>' => 'doc/reads'
+                    'class'        => 'yii\rest\UrlRule',
+                    'controller'   => 'doc',
+                    'GET doc/<id>' => 'doc/reads',
+                    'POST doc'     => 'doc/creates'
 
                 ],
 

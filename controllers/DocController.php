@@ -22,8 +22,7 @@ class DocController extends ActiveController
 
     {
         $request = Yii::$app->request->post();
-
-        $check = $this->validateFields($request['name'], $request['name']);
+        $check   = $this->validateFields($request);
 
         if ($check !== true){
             return $check;
@@ -185,21 +184,21 @@ private function processKeyValues($tempKeyValues){
     return array($key, $value);
     }
 
-    private function validateFields ($name, $keyValues, $id = 1)
+    private function validateFields ($request)
     {
-        // Check for id.
+        /*// Check for id.
         if (empty($id) || !is_numeric($id)) {
             return [
                 'status' => false,
                 'message'=> 'A valid ID is needed.'
             ];
-        }
+        }*/
 
         // Check for name.
-        if (empty($name)) {
+        if (empty($request['name'])) {
             return [
                 'status' => false,
-                'message'=> 'A name is needed.'
+                'message'=> 'A name for the document is needed.'
             ];
         }
 
