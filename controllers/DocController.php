@@ -48,10 +48,10 @@ class DocController extends ActiveController
      */
     public function actionReads(){
 
-        $request = Yii::$app->request->post();
+        $request = Yii::$app->request->get();
 
         // Retrieve specified document.
-        if (isset($request) && isset($request['id']) && is_numeric($request['id']) ){
+        if (isset($request) && isset($request['id']) && is_numeric($request['id'])){
             $id    = $request['id'];
             $model = Documents::findOne($id);
 
@@ -61,7 +61,7 @@ class DocController extends ActiveController
             }else {
                 return [
                     'status' => false ,
-                    'message'=> 'Document not found.'
+                    'message'=> 'Document doesnt exist.'
                 ];
             }
 
