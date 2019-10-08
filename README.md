@@ -5,9 +5,10 @@ Framework application assignment that Creates, Reads, Updates, Deletes, Download
 
 ## Requirements
 You need to manually create the database and table used for the project.
-Please use the included file schema.sql file that only contains the table structure.
-Database settings need to be updated in the file: config/db.php<br>
-DB should be named: "project" and table "documents".
+
+Please use the included file __schema.sql__  that only contains the table structure.
+Database settings need to be updated in the file: __config/db.php__<br>
+DB should be named: __"project"__* and table __"documents"__.
 
 
 ## How to use
@@ -34,9 +35,10 @@ make use of the CRUD operations:<br />
 If you prefer to use the *__REST API__* services:
 
 A folder called Postman inside the repository includes examples of *__GET, POST, PUT and DELETE__* requests.
+
 Just import the .json file to Postman.
 
-You can also use __*CURL__*, check these examples:
+You can also use __CURL__, check the following examples:
 
 *__GET /doc__* 
 ```
@@ -74,9 +76,7 @@ curl -X PUT \
 ```
 curl -X DELETE \
   http://localhost:8080/doc/1 \
-  -H 'Postman-Token: 46090c0c-3230-4acc-b7b5-fd412d473d41' \
-  -H 'cache-control: no-cache'
-```
+ ```
 
 
 
