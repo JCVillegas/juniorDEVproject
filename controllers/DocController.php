@@ -128,9 +128,16 @@ class DocController extends ActiveController
      */
     public function actionUpdates(){
 
-        $request = Yii::$app->request->post();
+        $id = Yii::$app->request->get();
+        if (empty($id)) {
+            return [
+                'status' => false,
+                'message'=> 'A valid ID is needed.'
+            ];
+        }
 
-        $check = $this->validateFields( $request['name'], $request['key_values'], $request['id']);
+        $request = Yii::$app->request->post();
+        $check   = $this->validateFields($request);
 
         if ($check !== true){
             return $check;
@@ -139,7 +146,7 @@ class DocController extends ActiveController
         list($request['key'], $request['value']) = $this->processKeyValues($request['key_values']);
         $jsonKeyValue = json_encode(array_combine($request['key'], $request['value']) );
 
-        $document =   Documents::findOne($request['id']);
+        $document =   Documents::findOne( $id);
 
         if (empty($document))
         {
@@ -185,14 +192,6 @@ private function processKeyValues($tempKeyValues){
 
     private function validateFields ($request)
     {
-        /*// Check for id.
-        if (empty($id) || !is_numeric($id)) {
-            return [
-                'status' => false,
-                'message'=> 'A valid ID is needed.'
-            ];
-        }*/
-
         // Check for name.
         if (empty($request['name'])) {
             return [
@@ -202,7 +201,7 @@ private function processKeyValues($tempKeyValues){
         }
 
         // Check for keyValues.
-        if (empty($keyValues)) {
+        if (empty($request['key_values'])) {
             return [
                 'status' => false,
                 'message'=> 'Key values are needed.'
