@@ -4,16 +4,31 @@
 Framework application assignment that Creates, Reads, Updates, Deletes, Downloads and Exports CSV created Documents.
 
 ## Requirements
-You need to manually create the database and table used for the project.
-
-Please use the included file __schema.sql__  that only contains the table structure.
+You need to manually create the database for the project.
 Database settings need to be updated in the file: __config/db.php__<br>
-DB should be named: __"project"__* and table __"documents"__.
+DB should be named: __"project"__*
 
+## How to install
+Clone or download this repository
+Open a CLI, navigate to the project directory and run
 
-## How to use
-Clone or download this repository, with a web server running open a web browser and
-make use of the CRUD operations:<br />
+To install project dependencies:
+```
+composer install  
+```
+
+To migrate (create) the project table:
+```
+php yii migrate
+```
+
+To initiate the project web server:
+```
+php yii serve
+```
+And that is it, you are ready to use it.
+
+To make use of the CRUD operations:<br />
 
 | Description | URL  |
 | --- | --- |
@@ -78,10 +93,6 @@ curl -X DELETE \
   http://localhost:8080/doc/1 \
  ```
 
-
-
-
-
 ## Notes
 The project was developed using the following:
 * Yii2 Framework version 2.0 running the PHP built-in server integration
@@ -90,10 +101,12 @@ The project was developed using the following:
 
 The functionalities for this project are:<br />
 * The web application allows to store a set of key/value pairs and a document name in the DB.<br />
-* It also stores metadata (date of document created, exported, updated)<br />
+* Stores metadata values (timestamp for document created, exported, updated)<br />
 * Lists all files with metadata fields.<br />
 * Updates name and key/ value pairs for existing document.<br />
-* When updating the document it updates last modification date.<br />
+* When updating the document it updates last modification timestamp.<br />
+* When generating a CSV document it updates last export timestamp.<br />
+* When uploading to a third party cloud integration it updates the export timestamp.<br />
 * Allows to delete document.<br />
 * Allows to export stored data as a CSV comma separated file.<br />
 
