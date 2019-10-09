@@ -10,7 +10,7 @@ Framework application assignment that Creates, Reads, Updates, Deletes, Download
 
 ## How to install
 Clone or download this repository
-Open a CLI, navigate to the project directory and run
+Open a CLI, navigate to the project directory and run:
 
 To install project dependencies:
 ```
@@ -51,9 +51,8 @@ If you prefer to use the *__REST API__* services:
 
 A folder named Postman inside the repository includes examples of *__GET, POST, PUT and DELETE__* requests.
 
-Just import the .json file to Postman.
-
-You can also use __CURL__, check the following examples:
+* Just import the .json file to Postman.
+* You can also use __CURL__, check the following examples:
 
 *__GET /doc__* 
 ```
