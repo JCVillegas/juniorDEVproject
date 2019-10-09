@@ -4,9 +4,8 @@
 Framework application assignment that Creates, Reads, Updates, Deletes, Downloads and Exports CSV created Documents.
 
 ## Requirements
-You need to manually create the database for the project.
-Database settings need to be updated in the file: __config/db.php__<br>
-DB should be named: __"project"__*
+* You need to manually create the database for the project.
+* Database settings need to be updated in the file: __config/db.php__<br>
 
 ## How to install
 Clone or download this repository
@@ -49,7 +48,7 @@ To make use of the CRUD operations:<br />
 
 If you prefer to use the *__REST API__* services:
 
-A folder called Postman inside the repository includes examples of *__GET, POST, PUT and DELETE__* requests.
+A folder named Postman inside the repository includes examples of *__GET, POST, PUT and DELETE__* requests.
 
 Just import the .json file to Postman.
 
