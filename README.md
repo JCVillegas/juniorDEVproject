@@ -6,6 +6,7 @@ Framework application assignment that Creates, Reads, Updates, Deletes, Download
 ## Requirements
 * You need to manually create the database for the project.
 * Database settings need to be updated in the file: __config/db.php__<br>
+* PHP 7.2 , MYSQL 8
 
 ## How to install
 Clone or download this repository
