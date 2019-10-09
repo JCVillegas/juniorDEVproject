@@ -122,10 +122,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"FileName\",\n    \"key_values\": \"a:1,b:2,c:3,d:4,e:5\",\n    \"id\": \"1\"\n}"
+					"raw": "{\n    \"name\": \"FileName\",\n    \"key_values\": \"a:1,b:2,c:3,d:4,e:5\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/doc/updates",
+					"raw": "http://localhost:8080/doc/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -133,7 +133,7 @@
 					"port": "8080",
 					"path": [
 						"doc",
-						"updates"
+						"1"
 					]
 				}
 			},
