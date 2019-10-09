@@ -12,17 +12,17 @@ Framework application assignment that Creates, Reads, Updates, Deletes, Download
 Clone or download this repository
 Open a CLI, navigate to the project directory and run:
 
-To install project dependencies:
+* To install project dependencies:
 ```
 composer install  
 ```
 
-To migrate (create) the project table:
+* To migrate (create) the project table:
 ```
 php yii migrate
 ```
 
-To initiate the project web server:
+* To initiate the project web server:
 ```
 php yii serve
 ```
@@ -51,17 +51,20 @@ If you prefer to use the *__REST API__* services:
 
 A folder named Postman inside the repository includes examples of *__GET, POST, PUT and DELETE__* requests.
 
-* Just import the .json file to Postman.
+* Import the .json file to Postman (located under the postman folder).
 * You can also use __CURL__, check the following examples:
 
-*__GET /doc__* 
+
+|*__GET /doc__* |
+--- | 
 ```
 curl -X GET \
   http://localhost:8080/doc \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -H 'cache-control: no-cache'
 ```
-*__GET /doc/:id__* 
+|*__GET /doc/:id__* |
+--- | 
 ```
 curl -X GET \
   http://localhost:8080/doc/1 \
@@ -70,7 +73,8 @@ curl -X GET \
   -H 'cache-control: no-cache'
 
 ```
-*__PUT /doc/:id__* 
+|*__PUT /doc/:id__* |
+--- | 
 ```
 curl -X PUT \
   http://localhost:8080/doc/4 \
@@ -86,7 +90,8 @@ curl -X PUT \
     "key_values": "a:1,b:2,c:3,d:4,e:5"
 }'
 ```
-*__DELETE /doc/:id__* 
+|*__DELETE /doc/:id__*|
+--- |  
 ```
 curl -X DELETE \
   http://localhost:8080/doc/1 \
